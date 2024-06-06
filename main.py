@@ -10,6 +10,7 @@ botChatIA = Bot(token="7294502296:AAEEXbUL4L2S_MDFZ5HqgK-5Ql7s70HF72o")
 dp = Dispatcher(botChatIA)
 
 async def respond_to_question(message: types.Message):
+    question = message.text.strip()
     response = model.generate_content(question)
     
     # Check if the response contains a valid part
