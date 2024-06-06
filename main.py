@@ -10,10 +10,6 @@ botChatIA = Bot(token="7294502296:AAEEXbUL4L2S_MDFZ5HqgK-5Ql7s70HF72o")
 dp = Dispatcher(botChatIA)
 
 async def respond_to_question(message: types.Message):
-    question = message.text.replace('/ask', '').strip()
-    if not question:
-        await message.reply("Please provide a question after the /ask command.")
-        return
     response = model.generate_content(question)
     
     # Check if the response contains a valid part
@@ -26,7 +22,7 @@ async def respond_to_question(message: types.Message):
         await message.reply("The response could not be generated. Please try again with a different question.")
 
 
-dp.register_message_handler(respond_to_question, commands=['ask'])
+dp.register_message_handler(respond_to_question)
 
 
 executor.start_polling(dp)
